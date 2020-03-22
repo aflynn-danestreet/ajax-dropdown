@@ -4,9 +4,18 @@ class HomesController < ApplicationController
   # GET /homes
   # GET /homes.json
   def index
-    @homes = Home.all
     @countries = Country.all
-    @cities = City.all
+    @cities = []
+    if params[:country].present?
+      @cities = Country.find(params[:country]).cities
+    end
+    if request.xhr?
+      respond_to do |format|
+        format.json {
+          render json: {cities: @cities}
+        }
+      end
+    end
   end
 
   # POST /homes
