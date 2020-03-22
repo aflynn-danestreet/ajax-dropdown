@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Home</h1>
+<%= label_tag  "Select country" %>
+<%= select_tag :country, options_for_select(@countries.map{|c| [c.name, c.id] }), include_blank: true, class: 'form-control' %>
+<%= label_tag "Select city" %>
+<%= select_tag :city, options_for_select(@cities.map{|c| [c.name, c.id] }), include_blank: true, class: 'form-control' %>
+<br>
+ 
